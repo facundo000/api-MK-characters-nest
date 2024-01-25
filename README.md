@@ -18,6 +18,8 @@ npm i -g @nestjs/cli
 ```
 docker-compose up -d
 ```
+## SEED
+API extraida desde https://www.giantbomb.com/api/
 
 ## Stack usado
 

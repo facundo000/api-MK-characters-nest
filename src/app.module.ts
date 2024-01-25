@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { MortalkombatModule } from './mortalkombat/mortalkombat.module';
 import { CommonModule } from './common/common.module';
+import { SeedModule } from './seed/seed.module';
 
 
 @Module({
@@ -17,6 +18,8 @@ import { CommonModule } from './common/common.module';
     MortalkombatModule,
 
     CommonModule,
+
+    SeedModule,
   ],
 })
 export class AppModule {}
