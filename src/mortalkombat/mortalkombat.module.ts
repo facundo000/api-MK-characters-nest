@@ -14,6 +14,9 @@ import { Mortalkombat, mortalkombatSchema } from './entities/mortalkombat.entity
         schema: mortalkombatSchema,
       }
     ])
+  ],
+  exports: [
+    MongooseModule
   ]
 })
 export class MortalkombatModule {}

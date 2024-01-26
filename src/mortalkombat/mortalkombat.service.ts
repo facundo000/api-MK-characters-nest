@@ -35,16 +35,20 @@ export class MortalkombatService {
 
     if( !isNaN(+term) ) {
       character = await this.mortalkombatModel.findOne({ no: term });
+      console.log(character)
     }
 
     //MongoID
     if( !character && isValidObjectId( term ) ) {
       character = await this.mortalkombatModel.findById( term );
+      console.log(character)
+
     }
 
     //Name
     if( !character ) {
       character = await this.mortalkombatModel.findOne({ name: term.toLowerCase().trim() })
+      console.log(character)
     }
 
     if(!character) {

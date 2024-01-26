@@ -18,8 +18,12 @@ npm i -g @nestjs/cli
 ```
 docker-compose up -d
 ```
-## SEED
-API extraida desde https://www.giantbomb.com/api/
+5. Reconstruir base de datos con SEED (caso de no tener nada en BD)
+```
+http://localhost:3000/api/v1/seed
+```
+
+Datos extraídos de la API: https://www.giantbomb.com/api/
 
 ## Stack usado
 
