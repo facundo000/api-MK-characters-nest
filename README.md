@@ -18,7 +18,7 @@ npm i -g @nestjs/cli
 ```
 docker-compose up -d
 ```
-5. Reconstruir base de datos con SEED (caso de no tener nada en BD)
+5. Reconstruir base de datos con la semilla SEED (caso de no tener nada en BD)
 ```
 http://localhost:3000/api/v1/seed
 ```

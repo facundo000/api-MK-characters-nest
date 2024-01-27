@@ -5,6 +5,7 @@ import { Mortalkombat } from './entities/mortalkombat.entity';
 
 import { CreateMortalkombatDto } from './dto/create-mortalkombat.dto';
 import { UpdateMortalkombatDto } from './dto/update-mortalkombat.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class MortalkombatService {
@@ -25,8 +26,17 @@ export class MortalkombatService {
     }
   }
 
-  findAll() {
-    return `This action returns all mortalkombat`;
+  findAll(paginationDto: PaginationDto) {
+
+    const { limit = 10, offset = 0 } = paginationDto;
+
+    return this.mortalkombatModel.find()
+    .limit( limit )
+    .skip( offset )
+    .sort({
+      no: 1
+    })
+    .select('-__v');
   }
 
   async findOne(term: string) {

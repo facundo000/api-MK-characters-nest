@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode, Query } from '@nestjs/common';
 import { MortalkombatService } from './mortalkombat.service';
 import { CreateMortalkombatDto } from './dto/create-mortalkombat.dto';
 import { UpdateMortalkombatDto } from './dto/update-mortalkombat.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('mortalkombat')
 export class MortalkombatController {
@@ -15,8 +16,9 @@ export class MortalkombatController {
   }
 
   @Get()
-  findAll() {
-    return this.mortalkombatService.findAll();
+  findAll( @Query() paginationDto: PaginationDto ) {
+
+    return this.mortalkombatService.findAll(paginationDto);
   }
 
   @Get(':term')
