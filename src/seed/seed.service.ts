@@ -21,7 +21,7 @@ export class SeedService {
   async executeSeedService() {
     await this.mortalkombatModel.deleteMany({});
 
-    const data = await this.http.get<MkResponse>(`https://www.giantbomb.com/api/characters/?api_key=${process.env.API_KEY}&format=json&field_list=name,image&limit=50`);
+    const data = await this.http.get<MkResponse>(`https://www.giantbomb.com/api/characters/?api_key=${process.env.API_KEY}&format=json&field_list=name,image&limit=70`);
 
 
     const characterToInsert: { name:string, no: number } [] = [];

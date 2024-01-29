@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
+
 import { Model, isValidObjectId } from 'mongoose';
 import { Mortalkombat } from './entities/mortalkombat.entity';
 
@@ -10,10 +12,16 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 @Injectable()
 export class MortalkombatService {
 
+  private defaultLimit: number;
+
   constructor(
     @InjectModel( Mortalkombat.name )
-    private readonly mortalkombatModel: Model<Mortalkombat>
-  ) {}
+    private readonly mortalkombatModel: Model<Mortalkombat>,
+
+    private readonly  configService: ConfigService
+  ) {
+    this.defaultLimit = configService.get<number>('defaultLimit');
+  }
 
   async create(createMortalkombatDto: CreateMortalkombatDto) {
     createMortalkombatDto.name  = createMortalkombatDto.name.toLocaleLowerCase();
@@ -28,7 +36,7 @@ export class MortalkombatService {
 
   findAll(paginationDto: PaginationDto) {
 
-    const { limit = 10, offset = 0 } = paginationDto;
+    const { limit = this.defaultLimit, offset = 0 } = paginationDto;
 
     return this.mortalkombatModel.find()
     .limit( limit )
