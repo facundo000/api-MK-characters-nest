@@ -24,12 +24,13 @@ export class SeedService {
     const data = await this.http.get<MkResponse>(`https://www.giantbomb.com/api/characters/?api_key=${process.env.API_KEY}&format=json&field_list=name,image&limit=70`);
 
 
-    const characterToInsert: { name:string, no: number } [] = [];
+    const characterToInsert: { name:string, no: string } [] = [];
 
     await Promise.all(data.results.map(async (character) => {
     const { name, image } = character;
-    const segments = image.medium_url.split("/")[8].split("-")[0];
-    const no = +segments;
+    // const segments = image.medium_url.split("/")[8].split("-")[0];
+    // const no = +segments;
+    const no = image.medium_url;
     
     characterToInsert.push({ name: name.toLowerCase().trim(), no })
     

@@ -14,7 +14,7 @@ export class Mortalkombat extends Document {
         unique:true,
         index: true,
     })
-    no: number;
+    no: string;
 }
 
 export const mortalkombatSchema = SchemaFactory.createForClass( Mortalkombat );

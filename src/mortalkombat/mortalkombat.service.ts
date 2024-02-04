@@ -15,10 +15,11 @@ export class MortalkombatService {
   private defaultLimit: number;
 
   constructor(
+
     @InjectModel( Mortalkombat.name )
     private readonly mortalkombatModel: Model<Mortalkombat>,
 
-    private readonly  configService: ConfigService
+    private readonly  configService: ConfigService,
   ) {
     this.defaultLimit = configService.get<number>('defaultLimit');
   }
@@ -41,9 +42,6 @@ export class MortalkombatService {
     return this.mortalkombatModel.find()
     .limit( limit )
     .skip( offset )
-    .sort({
-      no: 1
-    })
     .select('-__v');
   }
 
