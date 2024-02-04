@@ -28,7 +28,7 @@ docker-compose up -d
 npm run start:dev
 ```
 
-6. Reconstruir base de datos con la semilla SEED (caso de no tener nada en BD)
+8. Reconstruir base de datos con la semilla SEED (caso de no tener nada en BD)
 ```
 http://localhost:3000/api/v1/seed
 ```
