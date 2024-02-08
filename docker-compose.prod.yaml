@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  mkapp:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: mk-docker
+    container_name: mkcharacterapp
+    restart: always # reiniciar el contenedor si se detiene
+    ports:
+      - "${PORT}:${PORT}"
+    # working_dir: /var/www/mk
+    environment:
+      API_KEY: ${API_KEY}
+      MONGODB: ${MONGODB}
+      PORT: ${PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+    # volumes:
+    #   - ./:/var/www/mk
+
+  db:
+    image: mongo:5
+    container_name: mongo-mk
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: nest-mk
+    volumes:
+      - ./mongo:/data/db
