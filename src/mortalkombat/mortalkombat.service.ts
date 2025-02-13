@@ -95,7 +95,7 @@ export class MortalkombatService {
     if( deletedCount === 0 ) 
       throw new BadRequestException( `Character by Mortal Kombat with id ${id} not found`)
 
-    return;
+    return true;
   }
 
   private handleExceptions( error: any ) {

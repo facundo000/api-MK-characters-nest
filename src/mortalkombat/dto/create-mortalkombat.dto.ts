@@ -1,4 +1,4 @@
-import { IsInt, IsPositive, IsString, Min, MinLength } from "class-validator";
+import { IsString, Matches, Min, MinLength } from "class-validator";
 
 export class CreateMortalkombatDto {
 
@@ -6,8 +6,8 @@ export class CreateMortalkombatDto {
     @MinLength(1)
     name: string;
 
-    @IsInt()
-    @IsPositive()
-    @Min(1)
-    no: number;
+    @IsString()
+    @MinLength(5)
+    @Matches(/\.(png|jpg|webp|jpeg)$/i, { message: 'no must end with .png, .jpg, or .webp' })
+    no: string;
 }
