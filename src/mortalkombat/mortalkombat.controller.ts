@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode, Query, UseGuards } from '@nestjs/common';
 import { MortalkombatService } from './mortalkombat.service';
 import { CreateMortalkombatDto } from './dto/create-mortalkombat.dto';
 import { UpdateMortalkombatDto } from './dto/update-mortalkombat.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { JwtAuthGuard } from 'src/authz/jwtAuth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('mortalkombat')
 export class MortalkombatController {
@@ -15,6 +17,7 @@ export class MortalkombatController {
     return this.mortalkombatService.create(createMortalkombatDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll( @Query() paginationDto: PaginationDto ) {
 
