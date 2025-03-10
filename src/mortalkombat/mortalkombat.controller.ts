@@ -12,12 +12,11 @@ export class MortalkombatController {
   constructor(private readonly mortalkombatService: MortalkombatService) {}
 
   @Post()
-  // @HttpCode( HttpStatus.OK )
+  @UseGuards(JwtAuthGuard)
   create(@Body() createMortalkombatDto: CreateMortalkombatDto) {
     return this.mortalkombatService.create(createMortalkombatDto);
   }
-
-  @UseGuards(JwtAuthGuard)
+  
   @Get()
   findAll( @Query() paginationDto: PaginationDto ) {
 
@@ -30,11 +29,13 @@ export class MortalkombatController {
   }
 
   @Patch(':term')
+  @UseGuards(JwtAuthGuard)
   update(@Param('term') term: string, @Body() updateMortalkombatDto: UpdateMortalkombatDto) {
     return this.mortalkombatService.update(term, updateMortalkombatDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   remove(@Param('id', ParseMongoIdPipe) id: string) {
     return this.mortalkombatService.remove(id);
   }

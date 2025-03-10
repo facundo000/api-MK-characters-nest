@@ -51,20 +51,17 @@ export class MortalkombatService {
 
     if( !isNaN(+term) ) {
       character = await this.mortalkombatModel.findOne({ no: term });
-      console.log(character)
     }
 
     //MongoID
     if( !character && isValidObjectId( term ) ) {
       character = await this.mortalkombatModel.findById( term );
-      console.log(character)
 
     }
 
     //Name
     if( !character ) {
       character = await this.mortalkombatModel.findOne({ name: term.toLowerCase().trim() })
-      console.log(character)
     }
 
     if(!character) {
@@ -88,9 +85,6 @@ export class MortalkombatService {
   }
 
   async remove(id: string) {
-    // const character = await this.findOne( id )
-    // await character.deleteOne();
-    // const result = this.mortalkombatModel.findByIdAndDelete( id );
     const { deletedCount } = await this.mortalkombatModel.deleteOne( { _id: id } );
     if( deletedCount === 0 ) 
       throw new BadRequestException( `Character by Mortal Kombat with id ${id} not found`)
@@ -102,7 +96,6 @@ export class MortalkombatService {
     if(error.code === 11000) {
       throw new BadRequestException(`Character exist  in db ${ JSON.stringify( error.keyValue ) }`)
     }
-    console.log(error);
     throw new InternalServerErrorException(`Can't create Character - Check server logs`);
 
   }
