@@ -33,6 +33,11 @@ npm run start:dev
 http://localhost:3000/api/v1/seed
 ```
 
+9. Front construido en Angular
+```
+https://github.com/facundo000/crud-characters-angular-v19
+```
+
 Datos extraídos de la API: https://www.giantbomb.com/api/
 
 ## Stack usado
