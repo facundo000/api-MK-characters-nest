@@ -22,7 +22,7 @@ import { AuthzModule } from './authz/authz.module';
       rootPath: join(__dirname,'..','public'),
       }),
     MongooseModule.forRoot( process.env.MONGODB, {
-      dbName: 'mkDataBase'
+      dbName: 'charactersDataBase'
       } 
     ),
 
